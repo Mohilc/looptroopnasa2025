@@ -36,12 +36,10 @@ Web technologies (HTML, CSS, JavaScript for frontend)
 
 Public NASA datasets (Kepler, K2, TESS)
 
-Video Link
-[Insert your project demo or explainer video link here]
-
-Dataset link
-
-
+Video Link:
+https://drive.google.com/drive/folders/1c-iA1J3SfvY308SjGjhU0p6r8fX3K8Aj?usp=sharing
+Datasetlink:
+https://drive.google.com/drive/folders/1c-iA1J3SfvY308SjGjhU0p6r8fX3K8Aj?usp=sharing
 NASA Data Used:
 Link Text: NASA Kepler Mission Light Curve Data
 Link URL: https://archive.stsci.edu/kepler/data_search/search.php
