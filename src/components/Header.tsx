@@ -21,7 +21,7 @@ export function Header() {
           </div>
           <div className="hidden md:flex items-center gap-4">
             <div className="text-right">
-              <div className="text-2xl font-bold text-violet-300">ML v1.0</div>
+              <div className="text-2xl font-bold text-violet-300">LoopTroop</div>
               <div className="text-xs text-slate-400 uppercase tracking-wider">Space research</div>
             </div>
           </div>
