@@ -31,7 +31,7 @@ export interface AnalysisProgress {
   };
 }
 
-function generateRandomCandidate(index: number, totalSamples: number): AnalysisResult['candidates'][0] {
+function generateRandomCandidate(index: number): AnalysisResult['candidates'][0] {
   const isExoplanet = Math.random() > 0.3;
   const confidence = isExoplanet
     ? 0.65 + Math.random() * 0.35
@@ -58,7 +58,7 @@ function generateStreamData(length: number = 100): number[] {
 }
 
 export async function simulateMLAnalysis(
-  file: File,
+  _file: File,
   totalSamples: number,
   onProgress?: (progress: AnalysisProgress) => void
 ): Promise<AnalysisResult> {
@@ -89,7 +89,7 @@ export async function simulateMLAnalysis(
 
   const numCandidates = Math.min(Math.floor(totalSamples * 0.1), 50);
   const candidates = Array.from({ length: numCandidates }, (_, i) =>
-    generateRandomCandidate(i, totalSamples)
+    generateRandomCandidate(i)
   );
 
   const exoplanetCount = candidates.filter(c => c.classification === 'exoplanet').length;

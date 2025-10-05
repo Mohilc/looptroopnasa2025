@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface StreamGraphProps {
   data: number[];
@@ -8,7 +8,26 @@ interface StreamGraphProps {
 
 export function StreamGraph({ data, label, color }: StreamGraphProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>();
+  const [dimensions, setDimensions] = useState({ width: 600, height: 150 });
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (containerRef.current) {
+        const width = containerRef.current.offsetWidth;
+        const height = Math.min(150, Math.max(100, width * 0.25));
+        setDimensions({ width, height });
+      }
+    };
+
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+
+    return () => {
+      window.removeEventListener('resize', updateDimensions);
+    };
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -17,23 +36,30 @@ export function StreamGraph({ data, label, color }: StreamGraphProps) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const width = canvas.width;
-    const height = canvas.height;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = dimensions.width * dpr;
+    canvas.height = dimensions.height * dpr;
+    canvas.style.width = `${dimensions.width}px`;
+    canvas.style.height = `${dimensions.height}px`;
+    ctx.scale(dpr, dpr);
+
     let offset = 0;
 
     const animate = () => {
-      ctx.clearRect(0, 0, width, height);
+      ctx.clearRect(0, 0, dimensions.width, dimensions.height);
 
       ctx.strokeStyle = color;
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 3;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 10;
       ctx.beginPath();
 
-      const points = 100;
+      const points = Math.min(150, dimensions.width / 4);
       for (let i = 0; i < points; i++) {
-        const x = (i / points) * width;
+        const x = (i / points) * dimensions.width;
         const dataIndex = Math.floor((i + offset) % data.length);
         const value = data[dataIndex];
-        const y = height / 2 + (value * height) / 4;
+        const y = dimensions.height / 2 + (value * dimensions.height) / 3;
 
         if (i === 0) {
           ctx.moveTo(x, y);
@@ -44,13 +70,14 @@ export function StreamGraph({ data, label, color }: StreamGraphProps) {
 
       ctx.stroke();
 
-      ctx.fillStyle = color + '20';
-      ctx.lineTo(width, height);
-      ctx.lineTo(0, height);
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = color + '15';
+      ctx.lineTo(dimensions.width, dimensions.height);
+      ctx.lineTo(0, dimensions.height);
       ctx.closePath();
       ctx.fill();
 
-      offset += 0.5;
+      offset += 0.8;
       animationRef.current = requestAnimationFrame(animate);
     };
 
@@ -61,17 +88,15 @@ export function StreamGraph({ data, label, color }: StreamGraphProps) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [data, color]);
+  }, [data, color, dimensions]);
 
   return (
-    <div className="relative">
+    <div ref={containerRef} className="relative w-full">
       <canvas
         ref={canvasRef}
-        width={600}
-        height={120}
-        className="w-full h-full rounded-lg"
+        className="w-full rounded-lg bg-slate-50/50"
       />
-      <div className="absolute top-2 left-4 text-xs font-semibold text-slate-700 bg-white/80 px-2 py-1 rounded backdrop-blur-sm">
+      <div className="absolute top-3 left-4 text-xs sm:text-sm font-bold text-slate-700 bg-white/90 px-3 py-1.5 rounded-lg backdrop-blur-sm shadow-sm">
         {label}
       </div>
     </div>

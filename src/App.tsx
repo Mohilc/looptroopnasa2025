@@ -76,7 +76,7 @@ function App() {
         orbital_period: c.orbital_period,
         planet_radius: c.planet_radius,
         stellar_magnitude: c.stellar_magnitude,
-        features: c.features,
+        features: c.features as Record<string, number>,
         detected_at: new Date().toISOString(),
         user_id: 'demo-user'
       }));
