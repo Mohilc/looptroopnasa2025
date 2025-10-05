@@ -132,11 +132,11 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-fuchsia-50">
       <Header />
 
       <main className="container mx-auto px-6 py-8">
-        <div className="mb-8 bg-gradient-to-r from-white to-slate-50 rounded-2xl shadow-xl p-8 border-l-4 border-cyan-500 hover:shadow-2xl transition-shadow duration-300">
+        <div className="mb-8 bg-gradient-to-r from-white to-violet-50 rounded-2xl shadow-xl p-8 border-l-4 border-violet-500 hover:shadow-2xl transition-shadow duration-300">
           <h2 className="text-xl font-bold text-slate-900 mb-3">About This System</h2>
           <p className="text-slate-600 leading-relaxed text-base">
             This AI-powered exoplanet detection system analyzes data from space-based missions like Kepler, TESS, and K2.
@@ -163,7 +163,7 @@ function App() {
         <ResultsDashboard candidates={candidates} modelRuns={modelRuns} />
       </main>
 
-      <footer className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-slate-400 py-8 mt-16 border-t border-slate-700">
+      <footer className="bg-gradient-to-r from-violet-900 via-fuchsia-900 to-violet-900 text-violet-200 py-8 mt-16 border-t border-violet-700">
         <div className="container mx-auto px-6 text-center">
           <p className="text-sm font-medium">
             Powered by AI/ML trained on NASA Exoplanet Archive data

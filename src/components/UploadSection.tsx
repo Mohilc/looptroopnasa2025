@@ -48,7 +48,7 @@ export function UploadSection({ onUpload }: UploadSectionProps) {
   return (
     <div className="bg-white rounded-2xl shadow-xl p-8 border border-slate-200 hover:shadow-2xl transition-shadow duration-300">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg">
+        <div className="p-2 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg">
           <Sparkles className="w-6 h-6 text-white" />
         </div>
         <h2 className="text-2xl font-bold text-slate-900">Upload Dataset</h2>
@@ -64,7 +64,7 @@ export function UploadSection({ onUpload }: UploadSectionProps) {
             value={datasetName}
             onChange={(e) => setDatasetName(e.target.value)}
             placeholder="e.g., Kepler Q1-Q17 Light Curves"
-            className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all hover:border-slate-300"
+            className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none transition-all hover:border-slate-300"
           />
         </div>
 
@@ -75,7 +75,7 @@ export function UploadSection({ onUpload }: UploadSectionProps) {
           <select
             value={missionSource}
             onChange={(e) => setMissionSource(e.target.value)}
-            className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-all bg-white hover:border-slate-300 cursor-pointer"
+            className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-violet-500 outline-none transition-all bg-white hover:border-slate-300 cursor-pointer"
           >
             <option value="Kepler">Kepler</option>
             <option value="TESS">TESS</option>
@@ -99,7 +99,7 @@ export function UploadSection({ onUpload }: UploadSectionProps) {
             />
             <label
               htmlFor="file-upload"
-              className="flex items-center justify-center gap-3 w-full px-4 py-10 border-2 border-dashed border-slate-300 rounded-xl cursor-pointer hover:border-cyan-500 hover:bg-gradient-to-br hover:from-cyan-50 hover:to-blue-50 transition-all duration-300 group"
+              className="flex items-center justify-center gap-3 w-full px-4 py-10 border-2 border-dashed border-slate-300 rounded-xl cursor-pointer hover:border-violet-500 hover:bg-gradient-to-br hover:from-violet-50 hover:to-fuchsia-50 transition-all duration-300 group"
             >
               {selectedFile ? (
                 <>
@@ -111,9 +111,9 @@ export function UploadSection({ onUpload }: UploadSectionProps) {
                 </>
               ) : (
                 <>
-                  <Upload className="w-8 h-8 text-slate-400 group-hover:text-cyan-500 transition-colors" />
+                  <Upload className="w-8 h-8 text-slate-400 group-hover:text-violet-500 transition-colors" />
                   <div className="text-center">
-                    <span className="text-slate-500 group-hover:text-cyan-600 font-medium block">Click to select file</span>
+                    <span className="text-slate-500 group-hover:text-violet-600 font-medium block">Click to select file</span>
                     <span className="text-xs text-slate-400 mt-1 block">Supports CSV and TXT formats</span>
                   </div>
                 </>
@@ -132,7 +132,7 @@ export function UploadSection({ onUpload }: UploadSectionProps) {
         <button
           onClick={handleUpload}
           disabled={uploading || !selectedFile}
-          className="w-full bg-gradient-to-r from-cyan-600 to-blue-600 text-white py-4 px-6 rounded-xl font-bold hover:from-cyan-700 hover:to-blue-700 disabled:from-slate-300 disabled:to-slate-400 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-2xl transform hover:-translate-y-0.5 active:translate-y-0 text-lg"
+          className="w-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white py-4 px-6 rounded-xl font-bold hover:from-violet-700 hover:to-fuchsia-700 disabled:from-slate-300 disabled:to-slate-400 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-2xl transform hover:-translate-y-0.5 active:translate-y-0 text-lg"
         >
           {uploading ? (
             <span className="flex items-center justify-center gap-2">

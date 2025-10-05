@@ -10,13 +10,13 @@ export function StreamGraph({ data, label, color }: StreamGraphProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<number>();
-  const [dimensions, setDimensions] = useState({ width: 600, height: 150 });
+  const [dimensions, setDimensions] = useState({ width: 600, height: 80 });
 
   useEffect(() => {
     const updateDimensions = () => {
       if (containerRef.current) {
         const width = containerRef.current.offsetWidth;
-        const height = Math.min(150, Math.max(100, width * 0.25));
+        const height = Math.min(80, Math.max(60, width * 0.15));
         setDimensions({ width, height });
       }
     };

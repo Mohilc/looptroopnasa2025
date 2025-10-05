@@ -26,7 +26,7 @@ export function ResultsDashboard({ candidates, modelRuns }: ResultsDashboardProp
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="relative overflow-hidden bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+        <div className="relative overflow-hidden bg-gradient-to-br from-violet-500 to-violet-600 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-3">
@@ -35,11 +35,11 @@ export function ResultsDashboard({ candidates, modelRuns }: ResultsDashboardProp
               </div>
               <span className="text-4xl font-bold">{exoplanetCount}</span>
             </div>
-            <p className="text-cyan-50 font-semibold text-sm uppercase tracking-wider">Exoplanets Detected</p>
+            <p className="text-violet-50 font-semibold text-sm uppercase tracking-wider">Exoplanets Detected</p>
           </div>
         </div>
 
-        <div className="relative overflow-hidden bg-gradient-to-br from-slate-500 to-slate-600 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+        <div className="relative overflow-hidden bg-gradient-to-br from-rose-500 to-rose-600 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-3">
@@ -48,7 +48,7 @@ export function ResultsDashboard({ candidates, modelRuns }: ResultsDashboardProp
               </div>
               <span className="text-4xl font-bold">{falsePositiveCount}</span>
             </div>
-            <p className="text-slate-50 font-semibold text-sm uppercase tracking-wider">False Positives</p>
+            <p className="text-rose-50 font-semibold text-sm uppercase tracking-wider">False Positives</p>
           </div>
         </div>
 
@@ -65,7 +65,7 @@ export function ResultsDashboard({ candidates, modelRuns }: ResultsDashboardProp
           </div>
         </div>
 
-        <div className="relative overflow-hidden bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+        <div className="relative overflow-hidden bg-gradient-to-br from-fuchsia-500 to-fuchsia-600 rounded-2xl p-6 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
           <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
           <div className="relative z-10">
             <div className="flex items-center justify-between mb-3">
@@ -76,7 +76,7 @@ export function ResultsDashboard({ candidates, modelRuns }: ResultsDashboardProp
                 {latestRun ? (latestRun.accuracy ? (latestRun.accuracy * 100).toFixed(1) + '%' : 'N/A') : 'N/A'}
               </span>
             </div>
-            <p className="text-blue-50 font-semibold text-sm uppercase tracking-wider">Model Accuracy</p>
+            <p className="text-fuchsia-50 font-semibold text-sm uppercase tracking-wider">Model Accuracy</p>
           </div>
         </div>
       </div>
@@ -84,7 +84,7 @@ export function ResultsDashboard({ candidates, modelRuns }: ResultsDashboardProp
       {highConfidenceCandidates.length > 0 && (
         <div className="bg-white rounded-2xl shadow-xl p-8 border border-slate-200">
           <div className="flex items-center gap-3 mb-6">
-            <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg">
+            <div className="p-2 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg">
               <Target className="w-6 h-6 text-white" />
             </div>
             <h2 className="text-2xl font-bold text-slate-900">Top Exoplanet Candidates</h2>
@@ -111,7 +111,7 @@ export function ResultsDashboard({ candidates, modelRuns }: ResultsDashboardProp
                       <div className="flex items-center gap-2">
                         <div className="w-24 bg-slate-200 rounded-full h-2">
                           <div
-                            className="bg-cyan-600 h-2 rounded-full transition-all"
+                            className="bg-violet-600 h-2 rounded-full transition-all"
                             style={{ width: `${candidate.confidence_score * 100}%` }}
                           />
                         </div>
@@ -127,7 +127,7 @@ export function ResultsDashboard({ candidates, modelRuns }: ResultsDashboardProp
                       {candidate.planet_radius ? `${candidate.planet_radius.toFixed(2)} R⊕` : 'N/A'}
                     </td>
                     <td className="py-4 px-4">
-                      <span className="text-xs bg-gradient-to-r from-cyan-100 to-blue-100 text-cyan-700 px-3 py-1 rounded-full font-semibold">
+                      <span className="text-xs bg-gradient-to-r from-violet-100 to-fuchsia-100 text-violet-700 px-3 py-1 rounded-full font-semibold">
                         {candidate.detection_method}
                       </span>
                     </td>
@@ -142,7 +142,7 @@ export function ResultsDashboard({ candidates, modelRuns }: ResultsDashboardProp
       {latestRun && (
         <div className="bg-white rounded-2xl shadow-xl p-8 border border-slate-200">
           <div className="flex items-center gap-3 mb-6">
-            <div className="p-2 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg">
+            <div className="p-2 bg-gradient-to-br from-fuchsia-500 to-pink-500 rounded-lg">
               <BarChart3 className="w-6 h-6 text-white" />
             </div>
             <h2 className="text-2xl font-bold text-slate-900">Latest Model Run</h2>

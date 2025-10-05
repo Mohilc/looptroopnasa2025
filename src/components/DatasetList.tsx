@@ -29,7 +29,7 @@ export function DatasetList({ datasets, onAnalyze, onDelete, analyzing }: Datase
   return (
     <div className="bg-white rounded-2xl shadow-xl p-8 border border-slate-200">
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-2 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg">
+        <div className="p-2 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg">
           <Database className="w-6 h-6 text-white" />
         </div>
         <h2 className="text-2xl font-bold text-slate-900">Datasets</h2>
@@ -38,11 +38,11 @@ export function DatasetList({ datasets, onAnalyze, onDelete, analyzing }: Datase
         {datasets.map((dataset) => (
           <div
             key={dataset.id}
-            className="flex items-center justify-between p-5 border-2 border-slate-200 rounded-xl hover:border-cyan-400 hover:shadow-lg transition-all duration-300 bg-gradient-to-r hover:from-cyan-50 hover:to-blue-50"
+            className="flex items-center justify-between p-5 border-2 border-slate-200 rounded-xl hover:border-violet-400 hover:shadow-lg transition-all duration-300 bg-gradient-to-r hover:from-violet-50 hover:to-fuchsia-50"
           >
             <div className="flex items-center gap-4 flex-1">
-              <div className="p-3 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-lg">
-                <FileText className="w-8 h-8 text-cyan-600 flex-shrink-0" />
+              <div className="p-3 bg-gradient-to-br from-violet-100 to-fuchsia-100 rounded-lg">
+                <FileText className="w-8 h-8 text-violet-600 flex-shrink-0" />
               </div>
               <div className="flex-1 min-w-0">
                 <h3 className="font-bold text-slate-900 truncate text-lg">{dataset.name}</h3>
@@ -64,7 +64,7 @@ export function DatasetList({ datasets, onAnalyze, onDelete, analyzing }: Datase
                 <button
                   onClick={() => onAnalyze(dataset.id)}
                   disabled={analyzing === dataset.id}
-                  className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-xl hover:from-cyan-700 hover:to-blue-700 disabled:from-slate-300 disabled:to-slate-400 disabled:cursor-not-allowed transition-all font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-xl hover:from-violet-700 hover:to-fuchsia-700 disabled:from-slate-300 disabled:to-slate-400 disabled:cursor-not-allowed transition-all font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
                   <Play className="w-5 h-5" />
                   {analyzing === dataset.id ? 'Analyzing...' : 'Analyze'}
