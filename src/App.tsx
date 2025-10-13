@@ -50,25 +50,18 @@ function App() {
     setDatasets(updatedDatasets);
     localStorage.setItem('datasets', JSON.stringify(updatedDatasets));
 
-    await handleAnalyze(newDataset.id, file, sampleCount);
-  };
-
-  const handleAnalyze = async (datasetId: string, file?: File, sampleCount?: number) => {
-    setAnalyzing(datasetId);
-
-    const dataset = datasets.find(d => d.id === datasetId);
-    if (!dataset) return;
+    setAnalyzing(newDataset.id);
 
     try {
       const result = await simulateMLAnalysis(
-        file || new File([], 'data.csv'),
-        sampleCount || dataset.total_samples,
+        file,
+        sampleCount,
         (progress) => setAnalysisProgress(progress)
       );
 
       const newCandidates: Candidate[] = result.candidates.map(c => ({
         id: crypto.randomUUID(),
-        dataset_id: datasetId,
+        dataset_id: newDataset.id,
         candidate_name: c.candidate_name,
         confidence_score: c.confidence_score,
         classification: c.classification,
@@ -83,7 +76,7 @@ function App() {
 
       const newModelRun: ModelRun = {
         id: crypto.randomUUID(),
-        dataset_id: datasetId,
+        dataset_id: newDataset.id,
         model_version: 'v1.0',
         accuracy: result.modelMetrics.accuracy,
         precision_score: result.modelMetrics.precision_score,
@@ -100,22 +93,23 @@ function App() {
 
       const updatedCandidates = [...candidates, ...newCandidates];
       const updatedModelRuns = [newModelRun, ...modelRuns];
-      const updatedDatasets = datasets.map(d =>
-        d.id === datasetId ? { ...d, processed: true } : d
+      const finalDatasets = updatedDatasets.map(d =>
+        d.id === newDataset.id ? { ...d, processed: true } : d
       );
 
       setCandidates(updatedCandidates);
       setModelRuns(updatedModelRuns);
-      setDatasets(updatedDatasets);
+      setDatasets(finalDatasets);
 
       localStorage.setItem('candidates', JSON.stringify(updatedCandidates));
       localStorage.setItem('modelRuns', JSON.stringify(updatedModelRuns));
-      localStorage.setItem('datasets', JSON.stringify(updatedDatasets));
+      localStorage.setItem('datasets', JSON.stringify(finalDatasets));
     } finally {
       setAnalyzing(null);
       setAnalysisProgress(null);
     }
   };
+
 
   const handleDelete = async (datasetId: string) => {
     const updatedDatasets = datasets.filter(d => d.id !== datasetId);
@@ -153,7 +147,6 @@ function App() {
           <div className="lg:col-span-2">
             <DatasetList
               datasets={datasets}
-              onAnalyze={handleAnalyze}
               onDelete={handleDelete}
               analyzing={analyzing}
             />

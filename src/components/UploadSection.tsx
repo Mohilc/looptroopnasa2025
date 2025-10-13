@@ -137,7 +137,7 @@ export function UploadSection({ onUpload }: UploadSectionProps) {
           {uploading ? (
             <span className="flex items-center justify-center gap-2">
               <div className="w-5 h-5 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
-              Uploading...
+              Analyzing...
             </span>
           ) : (
             'Upload & Analyze'

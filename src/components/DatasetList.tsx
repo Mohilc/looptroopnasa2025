@@ -1,16 +1,15 @@
-import { Database, FileText, Trash2, Play } from 'lucide-react';
+import { Database, FileText, Trash2 } from 'lucide-react';
 import type { Database as DB } from '../lib/database.types';
 
 type Dataset = DB['public']['Tables']['datasets']['Row'];
 
 interface DatasetListProps {
   datasets: Dataset[];
-  onAnalyze: (datasetId: string) => void;
   onDelete: (datasetId: string) => void;
   analyzing: string | null;
 }
 
-export function DatasetList({ datasets, onAnalyze, onDelete, analyzing }: DatasetListProps) {
+export function DatasetList({ datasets, onDelete, analyzing }: DatasetListProps) {
   if (datasets.length === 0) {
     return (
       <div className="bg-gradient-to-br from-white to-slate-50 rounded-2xl shadow-xl p-8 border border-slate-200">
@@ -51,28 +50,24 @@ export function DatasetList({ datasets, onAnalyze, onDelete, analyzing }: Datase
                   <span className="text-sm text-slate-500 font-medium">
                     {dataset.total_samples.toLocaleString()} samples
                   </span>
-                  {dataset.processed && (
+                  {analyzing === dataset.id && (
+                    <span className="text-xs bg-gradient-to-r from-violet-400 to-fuchsia-500 text-white px-3 py-1 rounded-full font-bold shadow-sm animate-pulse">
+                      Analyzing...
+                    </span>
+                  )}
+                  {dataset.processed && analyzing !== dataset.id && (
                     <span className="text-xs bg-gradient-to-r from-green-400 to-emerald-500 text-white px-3 py-1 rounded-full font-bold shadow-sm">
-                      Processed
+                      Analyzed
                     </span>
                   )}
                 </div>
               </div>
             </div>
             <div className="flex items-center gap-2">
-              {!dataset.processed && (
-                <button
-                  onClick={() => onAnalyze(dataset.id)}
-                  disabled={analyzing === dataset.id}
-                  className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white rounded-xl hover:from-violet-700 hover:to-fuchsia-700 disabled:from-slate-300 disabled:to-slate-400 disabled:cursor-not-allowed transition-all font-bold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                >
-                  <Play className="w-5 h-5" />
-                  {analyzing === dataset.id ? 'Analyzing...' : 'Analyze'}
-                </button>
-              )}
               <button
                 onClick={() => onDelete(dataset.id)}
-                className="p-3 text-red-600 hover:bg-red-100 rounded-xl transition-all hover:scale-110"
+                disabled={analyzing === dataset.id}
+                className="p-3 text-red-600 hover:bg-red-100 rounded-xl transition-all hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
                 title="Delete dataset"
               >
                 <Trash2 className="w-5 h-5" />
